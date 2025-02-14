@@ -1,0 +1,20 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.19.xsd">
+
+    <changeSet author="r.sassoon" id="1">
+        <createTable tableName="test_table">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="time_long" type="bigint" remarks="Epoch (unix time) representation in milliseconds">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="test_table"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
