@@ -9,11 +9,9 @@ import java.time.Instant;
 @ApplicationScoped
 public class Database {
 
-    private static final String REPLACE_QUERY =
-            "REPLACE INTO test_table (id,time_long) VALUES (?,?) ";
+    private static final String REPLACE_QUERY = "REPLACE INTO test_table (id,time_long) VALUES (?,?) ";
 
     private static final String SELECT_QUERY = "SELECT time_long FROM test_table WHERE id = ?";
-
 
     private final JDBCPool jdbcPool;
 

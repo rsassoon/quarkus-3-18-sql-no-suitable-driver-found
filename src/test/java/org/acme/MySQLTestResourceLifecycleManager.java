@@ -12,11 +12,10 @@ import org.testcontainers.containers.MySQLContainer;
 public class MySQLTestResourceLifecycleManager implements QuarkusTestResourceLifecycleManager {
 
     @ClassRule
-    public static MySQLContainer<?> mysql =
-            new MySQLContainer<>("mysql:8.0.28");
-//                    .withUsername("root")
-//                    .withPassword("test")
-//                    .withDatabaseName("test_db");
+    public static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.28");
+    //                    .withUsername("root")
+    //                    .withPassword("test")
+    //                    .withDatabaseName("test_db");
 
     @Override
     public Map<String, String> start() {
@@ -29,7 +28,7 @@ public class MySQLTestResourceLifecycleManager implements QuarkusTestResourceLif
         Log.warn("jdbc url: " + mysql.getJdbcUrl());
         return Map.of(
                 "properties.db.url",
-//                mysql.getJdbcUrl().replace("jdbc:mysql:", "jdbc:aws-wrapper:mysql"),
+                //                mysql.getJdbcUrl().replace("jdbc:mysql:", "jdbc:aws-wrapper:mysql"),
                 mysql.getJdbcUrl(),
                 "properties.db.user",
                 mysql.getUsername(),

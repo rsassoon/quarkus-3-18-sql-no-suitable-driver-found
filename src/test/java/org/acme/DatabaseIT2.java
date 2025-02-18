@@ -11,10 +11,12 @@ import io.vertx.jdbcclient.JDBCPool;
 import jakarta.inject.Inject;
 import java.time.Instant;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 @QuarkusTest
+@Tag("integration")
 @WithTestResource(value = MySQLTestResourceLifecycleManager.class, scope = TestResourceScope.RESTRICTED_TO_CLASS)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DatabaseIT2 {
@@ -29,12 +31,10 @@ class DatabaseIT2 {
         database = new Database(jdbcPool);
     }
 
-
     @Test
     void should_save() {
         var time = Instant.now();
         assertThatNoException().isThrownBy(() -> database.save(2, time));
         await().untilAsserted(() -> assertThat(database.select(2)).isEqualTo(time.toEpochMilli()));
     }
-
 }
